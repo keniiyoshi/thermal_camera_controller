@@ -4,7 +4,7 @@ Created on Sun Dec  4 13:46:25 2022
 @author: ken iiyoshi, Aimlab
 
 
-Some more sample edits.
+Some more sample edits. more edits
 
 How to run (March 24, 2023):
     The program won't work if you try to compile through the IPython console. Run it from Anaconda's CMD.exe Prompt.
