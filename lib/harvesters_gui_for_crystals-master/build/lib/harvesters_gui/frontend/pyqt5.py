@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# ken. checking if my edit shows up on github. more edits
+# ken. checking if my edit shows up on github. more edits yay.
 # ----------------------------------------------------------------------------
 
 
@@ -162,7 +162,7 @@ class Harvester(QMainWindow):
         self.setWindowIcon(Icon('genicam_logo_i.png'))
 
         #
-        self.setWindowTitle('GenICam.Harvester')
+        self.setWindowTitle('GenICam.Harvester!!')
         self.setFont(get_system_font())
 
         #

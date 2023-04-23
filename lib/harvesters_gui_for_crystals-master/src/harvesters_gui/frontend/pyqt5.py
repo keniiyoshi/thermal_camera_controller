@@ -162,7 +162,7 @@ class Harvester(QMainWindow):
         self.setWindowIcon(Icon('genicam_logo_i.png'))
 
         #
-        self.setWindowTitle('GenICam.Harvester')
+        self.setWindowTitle('GenICam.Harvester!!')
         self.setFont(get_system_font())
 
         #
