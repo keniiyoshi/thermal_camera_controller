@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# ken. checking if my edit shows up on github. more edits yay.
+# ken. checking if my edit shows up on github. more edits
 # ----------------------------------------------------------------------------
 
 
