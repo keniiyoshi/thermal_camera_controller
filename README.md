@@ -20,6 +20,7 @@ While it is more convenient to interface the Gobi camera during the development 
 6. Connect the project to the original github project.
 7. Using the command prompt, navigate to the project directory, and run `pip install -e lib/harvesters_gui_for_crystals` and  `pip install -e lib/harvesters_for_crystals`.
 8. You should now be able to run the harvester.py program from PyCharm!
-9. to connect to a camera, you need to input a cti file. For the Gobi camera, mvGenTLProducer.cti from MATRIX VISION is used. TLSimi.cti can be used to digitally simulate a camera, if no physical camera is available. 
+9. to connect to a camera, you need to input a cti file. For the Gobi camera, mvGenTLProducer.cti from MATRIX VISION is used. TLSimi.cti can be used to digitally simulate a camera, if no physical camera is available. [More on this](https://github.com/genicam/harvesters/wiki
+
 ### Developing the program
 1. Todo
