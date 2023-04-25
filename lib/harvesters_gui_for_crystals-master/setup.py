@@ -83,7 +83,8 @@ setuptools.setup(
     install_requires=[
         'PyQt5<=5.13',
         'vispy<=0.6',
-        'harvesters>=1.1',
+        'harvesters>=-for-crystals',
+        # 'harvesters>=1.1', ken edit. so that harvesters_for_crystals can be installed
     ],
 
     license='Apache Software License V2.0',

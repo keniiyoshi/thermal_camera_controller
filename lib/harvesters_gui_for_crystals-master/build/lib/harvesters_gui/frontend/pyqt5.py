@@ -70,7 +70,7 @@ class Harvester(QMainWindow):
         self._harvester_core = HarvesterCore(
             profile=profile, logger=self._logger
         )
-        self._ia = None  # Image Acquirer
+        self._ia = None  # Image Acquirer. ken. why???
 
         #
         self._widget_canvas = Canvas2D(vsync=vsync)
@@ -162,7 +162,7 @@ class Harvester(QMainWindow):
         self.setWindowIcon(Icon('genicam_logo_i.png'))
 
         # ken. keep updating the title to make sure I'm recompiling the library before rerunning.ß
-        self.setWindowTitle('GenICam.Harvester.Apr23_444pm')
+        self.setWindowTitle('GenICam.Harvester.Apr24_35pm')
         self.setFont(get_system_font())
 
         #
