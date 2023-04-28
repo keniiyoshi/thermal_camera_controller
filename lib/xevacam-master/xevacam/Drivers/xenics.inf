@@ -1,0 +1,267 @@
+;"Copyright (C) Xenics 2013"
+[Version]
+Signature = "$Chicago$"
+Provider  = %manufacturer%
+DriverVer = 03/07/2013,0.1.12.1
+CatalogFile = xenics.cat
+CatalogFile.NT = xenics.cat
+CatalogFile.NTAMD64 = xenics_x64.cat
+
+Class = XenicsDevices
+ClassGUID = {86253426-FFE0-44dd-B445-2ECC4D1F8621}
+
+[ClassInstall32]
+AddReg=libusb_class_install_add_reg
+
+[ClassInstall32.ntamd64]
+AddReg=libusb_class_install_add_reg
+
+[libusb_class_install_add_reg]
+HKR,,,,"XenICs Devices"
+HKR,,Icon,,"-20"
+
+[Manufacturer]
+%manufacturer%=Devices,NT,NTAMD64
+
+;--------------------------------------------------------------------------
+; Files
+;--------------------------------------------------------------------------
+
+[SourceDisksNames]
+1 = %diskname%,,
+
+[SourceDisksFiles]
+libusb0.sys = 1,,
+libusb0.dll = 1,,
+libusb0_x64.sys = 1,,
+libusb0_x64.dll = 1,,
+
+[DestinationDirs]
+libusb_files_sys = 10,system32\drivers
+libusb_files_sys_x64 = 10,system32\drivers
+libusb_files_dll = 10,system32
+libusb_files_dll_wow64 = 10,syswow64
+libusb_files_dll_x64 = 10,system32
+
+[libusb_files_sys]
+libusb0.sys
+
+[libusb_files_sys_x64]
+libusb0.sys,libusb0_x64.sys
+
+[libusb_files_dll]
+libusb0.dll
+
+[libusb_files_dll_wow64]
+libusb0.dll
+
+[libusb_files_dll_x64]
+libusb0.dll,libusb0_x64.dll
+
+;--------------------------------------------------------------------------
+; Device driver
+;--------------------------------------------------------------------------
+
+[LIBUSB_DEV]
+CopyFiles = libusb_files_sys, libusb_files_dll
+AddReg    = libusb_add_reg
+
+[LIBUSB_DEV.NT]
+CopyFiles = libusb_files_sys, libusb_files_dll
+
+[LIBUSB_DEV.NTAMD64]
+CopyFiles = libusb_files_sys_x64, libusb_files_dll_wow64, libusb_files_dll_x64
+
+[LIBUSB_DEV.HW]
+DelReg = libusb_del_reg_hw
+AddReg = libusb_add_reg_hw
+
+[LIBUSB_DEV.NT.HW]
+DelReg = libusb_del_reg_hw
+AddReg = libusb_add_reg_hw
+
+[LIBUSB_DEV.NTAMD64.HW]
+DelReg = libusb_del_reg_hw
+AddReg = libusb_add_reg_hw
+
+[LIBUSB_DEV.NT.Services]
+AddService = libusb0, 0x00000002, libusb_add_service
+
+[LIBUSB_DEV.NTAMD64.Services]
+AddService = libusb0, 0x00000002, libusb_add_service
+
+[libusb_add_reg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,libusb0.sys
+
+; Older versions of this .inf file installed filter drivers. They are not
+; needed any more and must be removed
+[libusb_del_reg_hw]
+HKR,,LowerFilters
+HKR,,UpperFilters
+
+; Device properties
+[libusb_add_reg_hw]
+HKR,,SurpriseRemovalOK, 0x00010001, 1
+
+;--------------------------------------------------------------------------
+; Services
+;--------------------------------------------------------------------------
+
+[libusb_add_service]
+DisplayName    = "LibUsb-Win32 - Kernel Driver 03/20/2007, 0.1.12.1"
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 0
+ServiceBinary  = %12%\libusb0.sys
+
+;--------------------------------------------------------------------------
+; Devices
+;--------------------------------------------------------------------------
+
+[Devices]
+"Blank camera"							=LIBUSB_DEV, USB\Vid_04B4&Pid_8613
+"Xeva camera"							=LIBUSB_DEV, USB\Vid_1B21&Pid_8000, USB\Vid_1593&Pid_8000, USB\Vid_0547&Pid_1002
+"X-Vis camera"							=LIBUSB_DEV, USB\Vid_1593&Pid_0000, USB\Vid_1B21&Pid_8501, USB\Vid_1593&Pid_8501
+"BCi4"									=LIBUSB_DEV, USB\Vid_1B21&Pid_8500, USB\Vid_1593&Pid_8500
+"XEVA-USB-FPA-320-60Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8108, USB\Vid_1B21&Pid_8109, USB\Vid_1593&Pid_8108, USB\Vid_1593&Pid_8109
+"XEVA-USB-FPA-320-100Hz"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8110, USB\Vid_1B21&Pid_8111, USB\Vid_1593&Pid_8110, USB\Vid_1593&Pid_8111
+"XEVA-USB-FPA-640-15Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8630, USB\Vid_1593&Pid_8630
+"XEVA-USB-FPA-320-60Hz Water Cooled"	=LIBUSB_DEV, USB\Vid_1B21&Pid_8114, USB\Vid_1593&Pid_8114
+"XEVA-USB-FPA-320-100Hz Water Cooled"	=LIBUSB_DEV, USB\Vid_1B21&Pid_8115, USB\Vid_1593&Pid_8115
+"XMID-USB-FPA-320-60Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8602, USB\Vid_1593&Pid_8602
+"XMID-USB-FPA-320-100Hz"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8600, USB\Vid_1593&Pid_8600      
+"XPORT-FPA-320"							=LIBUSB_DEV, USB\Vid_1B21&Pid_8116, USB\Vid_1B21&Pid_8117, USB\Vid_1593&Pid_8116, USB\Vid_1593&Pid_8117
+"XPORT-FPA-384"							=LIBUSB_DEV, USB\Vid_1B21&Pid_8118, USB\Vid_1593&Pid_8118
+"XS-USB-FPA-320-60Hz-NTSC"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8631, USB\Vid_1593&Pid_8631
+"XS-USB-FPA-320-60Hz-PAL"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8632, USB\Vid_1593&Pid_8632
+"XS-USB-FPA-320-60Hz-NTSC-Hamamatsu"	    =LIBUSB_DEV, USB\Vid_0661&Pid_140A, USB\Vid_1B21&Pid_140A, USB\Vid_1593&Pid_140A
+"XS-USB-FPA-320-60Hz-PAL-Hamamatsu"		    =LIBUSB_DEV, USB\Vid_0661&Pid_140B, USB\Vid_1B21&Pid_140B, USB\Vid_1593&Pid_140B
+"XS-USB-FPA-320-60Hz-NTSC-Hamamatsu-LEPAS"  =LIBUSB_DEV, USB\Vid_0661&Pid_080C, USB\Vid_1B21&Pid_080C, USB\Vid_1593&Pid_080C
+"XS-USB-FPA-320-60Hz"				    =LIBUSB_DEV, USB\Vid_1B21&Pid_8636, USB\Vid_1593&Pid_8636
+"XS-USB-FPA-320-100Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8638, USB\Vid_1593&Pid_8638
+"XS-USB-FPA-320-100Hz-POU"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8640, USB\Vid_1593&Pid_8640
+"XEVA-LVDS-FPA-320-100Hz"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8106, USB\Vid_1593&Pid_8106
+"XEVA-LVDS-FPA-320-350Hz"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8620, USB\Vid_1593&Pid_8620
+"XEVA-CL-FPA-320-60Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8634, USB\Vid_1593&Pid_8634, USB\Vid_1B21&Pid_810B, USB\Vid_1593&Pid_810B
+"XEVA-CL-FPA-320-100Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8637, USB\Vid_1593&Pid_8637, USB\Vid_1B21&Pid_810C, USB\Vid_1593&Pid_810C
+"XEVA-CL-FPA-320-350Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_810A, USB\Vid_1593&Pid_810A, USB\Vid_1B21&Pid_810D, USB\Vid_1593&Pid_810D
+"XEVA-CL-FPA-640-90Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8629, USB\Vid_1593&Pid_8629
+"XEVA-CL-FPA-640-25Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8639, USB\Vid_1593&Pid_8639
+"XEVA-CL-FPA-2.5-320-TE4-60Hz"			=LIBUSB_DEV, USB\Vid_1B21&Pid_8611, USB\Vid_1593&Pid_8611, USB\Vid_1B21&Pid_8712
+"XEVA-CL-FPA-2.5-320-TE4-100Hz"			=LIBUSB_DEV, USB\Vid_1B21&Pid_8610, USB\Vid_1593&Pid_8610, USB\Vid_1B21&Pid_8711
+"XEVA-CL-FPA-2.5-320-TE4-200Hz"			=LIBUSB_DEV, USB\Vid_1B21&Pid_8710, USB\Vid_1593&Pid_8710
+"XEVA-CL-FPA-T2SL-2.35-320-TE4-60Hz"    =LIBUSB_DEV, USB\Vid_1B21&Pid_8713, USB\Vid_1593&Pid_8713
+"XEVA-CL-FPA-T2SL-2.35-320-TE4-100Hz"   =LIBUSB_DEV, USB\Vid_1B21&Pid_8714, USB\Vid_1593&Pid_8714
+"XEVA-CL-FPA-T2SL-2.35-320-TE4-350Hz"   =LIBUSB_DEV, USB\Vid_1B21&Pid_8715, USB\Vid_1593&Pid_8715
+"XMID-CL-FPA-320-60Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8612, USB\Vid_1593&Pid_8612
+"XMID-CL-FPA-320-350Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8613,	USB\Vid_1593&Pid_8613
+"XMID-CL-FPA-640-25Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8614,	USB\Vid_1593&Pid_8614
+"XMID-CL-FPA-640-90Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8615,	USB\Vid_1593&Pid_8615
+"XEVA-USB-LIN-512"						=LIBUSB_DEV, USB\Vid_1B21&Pid_8200, USB\Vid_1B21&Pid_8202, USB\Vid_1593&Pid_8200, USB\Vid_1593&Pid_8202
+"XEVA-USB-LIN-128"						=LIBUSB_DEV, USB\Vid_1B21&Pid_8201, USB\Vid_1B21&Pid_8203, USB\Vid_1593&Pid_8201, USB\Vid_1593&Pid_8203
+"XEVA-CL-LIN-512"						=LIBUSB_DEV, USB\Vid_1B21&Pid_8205, USB\Vid_1593&Pid_8205
+"Dynosense-CL-LIN-512"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8210, USB\Vid_1593&Pid_8210
+"XEVA-CL-LIN-512 fast"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8215, USB\Vid_1593&Pid_8215
+"XEVA-USB-Short Int"                    =LIBUSB_DEV, USB\Vid_1B21&Pid_8121
+
+[Devices.NT]
+"Blank camera"							=LIBUSB_DEV, USB\Vid_04B4&Pid_8613
+"Xeva camera"							=LIBUSB_DEV, USB\Vid_1B21&Pid_8000, USB\Vid_1593&Pid_8000, USB\Vid_0547&Pid_1002
+"X-Vis camera"							=LIBUSB_DEV, USB\Vid_1593&Pid_0000, USB\Vid_1B21&Pid_8501, USB\Vid_1593&Pid_8501
+"BCi4"									=LIBUSB_DEV, USB\Vid_1B21&Pid_8500, USB\Vid_1593&Pid_8500
+"XEVA-USB-FPA-320-60Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8108, USB\Vid_1B21&Pid_8109, USB\Vid_1593&Pid_8108, USB\Vid_1593&Pid_8109
+"XEVA-USB-FPA-320-100Hz"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8110, USB\Vid_1B21&Pid_8111, USB\Vid_1593&Pid_8110, USB\Vid_1593&Pid_8111
+"XEVA-USB-FPA-640-15Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8630, USB\Vid_1593&Pid_8630
+"XEVA-USB-FPA-320-60Hz Water Cooled"	=LIBUSB_DEV, USB\Vid_1B21&Pid_8114, USB\Vid_1593&Pid_8114
+"XEVA-USB-FPA-320-100Hz Water Cooled"	=LIBUSB_DEV, USB\Vid_1B21&Pid_8115, USB\Vid_1593&Pid_8115
+"XMID-USB-FPA-320-60Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8602, USB\Vid_1593&Pid_8602
+"XMID-USB-FPA-320-100Hz"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8600, USB\Vid_1593&Pid_8600      
+"XPORT-FPA-320"							=LIBUSB_DEV, USB\Vid_1B21&Pid_8116, USB\Vid_1B21&Pid_8117, USB\Vid_1593&Pid_8116, USB\Vid_1593&Pid_8117
+"XPORT-FPA-384"							=LIBUSB_DEV, USB\Vid_1B21&Pid_8118, USB\Vid_1593&Pid_8118
+"XS-USB-FPA-320-60Hz-NTSC"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8631, USB\Vid_1593&Pid_8631
+"XS-USB-FPA-320-60Hz-PAL"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8632, USB\Vid_1593&Pid_8632
+"XS-USB-FPA-320-60Hz-NTSC-Hamamatsu"	    =LIBUSB_DEV, USB\Vid_0661&Pid_140A, USB\Vid_1B21&Pid_140A, USB\Vid_1593&Pid_140A
+"XS-USB-FPA-320-60Hz-PAL-Hamamatsu"		    =LIBUSB_DEV, USB\Vid_0661&Pid_140B, USB\Vid_1B21&Pid_140B, USB\Vid_1593&Pid_140B
+"XS-USB-FPA-320-60Hz-NTSC-Hamamatsu-LEPAS"  =LIBUSB_DEV, USB\Vid_0661&Pid_080C, USB\Vid_1B21&Pid_080C, USB\Vid_1593&Pid_080C
+"XS-USB-FPA-320-60Hz"				    =LIBUSB_DEV, USB\Vid_1B21&Pid_8636, USB\Vid_1593&Pid_8636
+"XS-USB-FPA-320-100Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8638, USB\Vid_1593&Pid_8638
+"XS-USB-FPA-320-100Hz-POU"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8640, USB\Vid_1593&Pid_8640
+"XEVA-LVDS-FPA-320-100Hz"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8106, USB\Vid_1593&Pid_8106
+"XEVA-LVDS-FPA-320-350Hz"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8620, USB\Vid_1593&Pid_8620
+"XEVA-CL-FPA-320-60Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8634, USB\Vid_1593&Pid_8634, USB\Vid_1B21&Pid_810B, USB\Vid_1593&Pid_810B
+"XEVA-CL-FPA-320-100Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8637, USB\Vid_1593&Pid_8637, USB\Vid_1B21&Pid_810C, USB\Vid_1593&Pid_810C
+"XEVA-CL-FPA-320-350Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_810A, USB\Vid_1593&Pid_810A, USB\Vid_1B21&Pid_810D, USB\Vid_1593&Pid_810D
+"XEVA-CL-FPA-640-90Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8629, USB\Vid_1593&Pid_8629
+"XEVA-CL-FPA-640-25Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8639, USB\Vid_1593&Pid_8639
+"XEVA-CL-FPA-2.5-320-TE4-60Hz"			=LIBUSB_DEV, USB\Vid_1B21&Pid_8611, USB\Vid_1593&Pid_8611, USB\Vid_1B21&Pid_8712
+"XEVA-CL-FPA-2.5-320-TE4-100Hz"			=LIBUSB_DEV, USB\Vid_1B21&Pid_8610, USB\Vid_1593&Pid_8610, USB\Vid_1B21&Pid_8711
+"XEVA-CL-FPA-2.5-320-TE4-200Hz"			=LIBUSB_DEV, USB\Vid_1B21&Pid_8710, USB\Vid_1593&Pid_8710
+"XEVA-CL-FPA-T2SL-2.35-320-TE4-60Hz"    =LIBUSB_DEV, USB\Vid_1B21&Pid_8713, USB\Vid_1593&Pid_8713
+"XEVA-CL-FPA-T2SL-2.35-320-TE4-100Hz"   =LIBUSB_DEV, USB\Vid_1B21&Pid_8714, USB\Vid_1593&Pid_8714
+"XEVA-CL-FPA-T2SL-2.35-320-TE4-350Hz"   =LIBUSB_DEV, USB\Vid_1B21&Pid_8715, USB\Vid_1593&Pid_8715
+"XMID-CL-FPA-320-60Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8612, USB\Vid_1593&Pid_8612
+"XMID-CL-FPA-320-350Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8613,	USB\Vid_1593&Pid_8613
+"XMID-CL-FPA-640-25Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8614,	USB\Vid_1593&Pid_8614
+"XMID-CL-FPA-640-90Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8615,	USB\Vid_1593&Pid_8615
+"XEVA-USB-LIN-512"						=LIBUSB_DEV, USB\Vid_1B21&Pid_8200, USB\Vid_1B21&Pid_8202, USB\Vid_1593&Pid_8200, USB\Vid_1593&Pid_8202
+"XEVA-USB-LIN-128"						=LIBUSB_DEV, USB\Vid_1B21&Pid_8201, USB\Vid_1B21&Pid_8203, USB\Vid_1593&Pid_8201, USB\Vid_1593&Pid_8203
+"XEVA-CL-LIN-512"						=LIBUSB_DEV, USB\Vid_1B21&Pid_8205, USB\Vid_1593&Pid_8205
+"Dynosense-CL-LIN-512"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8210, USB\Vid_1593&Pid_8210
+"XEVA-CL-LIN-512 fast"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8215, USB\Vid_1593&Pid_8215	
+"XEVA-USB-Short Int"                    =LIBUSB_DEV, USB\Vid_1B21&Pid_8121
+
+[Devices.NTAMD64]
+"Blank camera"							=LIBUSB_DEV, USB\Vid_04B4&Pid_8613
+"Xeva camera"							=LIBUSB_DEV, USB\Vid_1B21&Pid_8000, USB\Vid_1593&Pid_8000, USB\Vid_0547&Pid_1002
+"X-Vis camera"							=LIBUSB_DEV, USB\Vid_1593&Pid_0000, USB\Vid_1B21&Pid_8501, USB\Vid_1593&Pid_8501
+"BCi4"									=LIBUSB_DEV, USB\Vid_1B21&Pid_8500, USB\Vid_1593&Pid_8500
+"XEVA-USB-FPA-320-60Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8108, USB\Vid_1B21&Pid_8109, USB\Vid_1593&Pid_8108, USB\Vid_1593&Pid_8109
+"XEVA-USB-FPA-320-100Hz"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8110, USB\Vid_1B21&Pid_8111, USB\Vid_1593&Pid_8110, USB\Vid_1593&Pid_8111
+"XEVA-USB-FPA-640-15Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8630, USB\Vid_1593&Pid_8630
+"XEVA-USB-FPA-320-60Hz Water Cooled"	=LIBUSB_DEV, USB\Vid_1B21&Pid_8114, USB\Vid_1593&Pid_8114
+"XEVA-USB-FPA-320-100Hz Water Cooled"	=LIBUSB_DEV, USB\Vid_1B21&Pid_8115, USB\Vid_1593&Pid_8115
+"XMID-USB-FPA-320-60Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8602, USB\Vid_1593&Pid_8602
+"XMID-USB-FPA-320-100Hz"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8600, USB\Vid_1593&Pid_8600      
+"XPORT-FPA-320"							=LIBUSB_DEV, USB\Vid_1B21&Pid_8116, USB\Vid_1B21&Pid_8117, USB\Vid_1593&Pid_8116, USB\Vid_1593&Pid_8117
+"XPORT-FPA-384"							=LIBUSB_DEV, USB\Vid_1B21&Pid_8118, USB\Vid_1593&Pid_8118
+"XS-USB-FPA-320-60Hz-NTSC"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8631, USB\Vid_1593&Pid_8631
+"XS-USB-FPA-320-60Hz-PAL"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8632, USB\Vid_1593&Pid_8632
+"XS-USB-FPA-320-60Hz-NTSC-Hamamatsu"	    =LIBUSB_DEV, USB\Vid_0661&Pid_140A, USB\Vid_1B21&Pid_140A, USB\Vid_1593&Pid_140A
+"XS-USB-FPA-320-60Hz-PAL-Hamamatsu"		    =LIBUSB_DEV, USB\Vid_0661&Pid_140B, USB\Vid_1B21&Pid_140B, USB\Vid_1593&Pid_140B
+"XS-USB-FPA-320-60Hz-NTSC-Hamamatsu-LEPAS"  =LIBUSB_DEV, USB\Vid_0661&Pid_080C, USB\Vid_1B21&Pid_080C, USB\Vid_1593&Pid_080C
+"XS-USB-FPA-320-60Hz"				    =LIBUSB_DEV, USB\Vid_1B21&Pid_8636, USB\Vid_1593&Pid_8636
+"XS-USB-FPA-320-100Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8638, USB\Vid_1593&Pid_8638
+"XS-USB-FPA-320-100Hz-POU"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8640, USB\Vid_1593&Pid_8640
+"XEVA-LVDS-FPA-320-100Hz"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8106, USB\Vid_1593&Pid_8106
+"XEVA-LVDS-FPA-320-350Hz"				=LIBUSB_DEV, USB\Vid_1B21&Pid_8620, USB\Vid_1593&Pid_8620
+"XEVA-CL-FPA-320-60Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8634, USB\Vid_1593&Pid_8634, USB\Vid_1B21&Pid_810B, USB\Vid_1593&Pid_810B
+"XEVA-CL-FPA-320-100Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8637, USB\Vid_1593&Pid_8637, USB\Vid_1B21&Pid_810C, USB\Vid_1593&Pid_810C
+"XEVA-CL-FPA-320-350Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_810A, USB\Vid_1593&Pid_810A, USB\Vid_1B21&Pid_810D, USB\Vid_1593&Pid_810D
+"XEVA-CL-FPA-640-90Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8629, USB\Vid_1593&Pid_8629
+"XEVA-CL-FPA-640-25Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8639, USB\Vid_1593&Pid_8639
+"XEVA-CL-FPA-2.5-320-TE4-60Hz"			=LIBUSB_DEV, USB\Vid_1B21&Pid_8611, USB\Vid_1593&Pid_8611, USB\Vid_1B21&Pid_8712
+"XEVA-CL-FPA-2.5-320-TE4-100Hz"			=LIBUSB_DEV, USB\Vid_1B21&Pid_8610, USB\Vid_1593&Pid_8610, USB\Vid_1B21&Pid_8711
+"XEVA-CL-FPA-2.5-320-TE4-200Hz"			=LIBUSB_DEV, USB\Vid_1B21&Pid_8710, USB\Vid_1593&Pid_8710
+"XEVA-CL-FPA-T2SL-2.35-320-TE4-60Hz"    =LIBUSB_DEV, USB\Vid_1B21&Pid_8713, USB\Vid_1593&Pid_8713
+"XEVA-CL-FPA-T2SL-2.35-320-TE4-100Hz"   =LIBUSB_DEV, USB\Vid_1B21&Pid_8714, USB\Vid_1593&Pid_8714
+"XEVA-CL-FPA-T2SL-2.35-320-TE4-350Hz"   =LIBUSB_DEV, USB\Vid_1B21&Pid_8715, USB\Vid_1593&Pid_8715
+"XMID-CL-FPA-320-60Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8612, USB\Vid_1593&Pid_8612
+"XMID-CL-FPA-320-350Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8613,	USB\Vid_1593&Pid_8613
+"XMID-CL-FPA-640-25Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8614,	USB\Vid_1593&Pid_8614
+"XMID-CL-FPA-640-90Hz"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8615,	USB\Vid_1593&Pid_8615
+"XEVA-USB-LIN-512"						=LIBUSB_DEV, USB\Vid_1B21&Pid_8200, USB\Vid_1B21&Pid_8202, USB\Vid_1593&Pid_8200, USB\Vid_1593&Pid_8202
+"XEVA-USB-LIN-128"						=LIBUSB_DEV, USB\Vid_1B21&Pid_8201, USB\Vid_1B21&Pid_8203, USB\Vid_1593&Pid_8201, USB\Vid_1593&Pid_8203
+"XEVA-CL-LIN-512"						=LIBUSB_DEV, USB\Vid_1B21&Pid_8205, USB\Vid_1593&Pid_8205
+"Dynosense-CL-LIN-512"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8210, USB\Vid_1593&Pid_8210
+"XEVA-CL-LIN-512 fast"					=LIBUSB_DEV, USB\Vid_1B21&Pid_8215, USB\Vid_1593&Pid_8215	
+"XEVA-USB-Short Int"                    =LIBUSB_DEV, USB\Vid_1B21&Pid_8121
+
+;--------------------------------------------------------------------------
+; Strings
+;--------------------------------------------------------------------------
+
+[Strings]
+manufacturer = "XenICs"
+diskname = "XenICs (Libusb-Win32) Driver Installation Disk"
+

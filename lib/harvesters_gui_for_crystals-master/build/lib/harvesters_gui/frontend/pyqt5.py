@@ -656,12 +656,13 @@ class Harvester(QMainWindow):
             self.ia.remote_device.node_map.PixelFormat.value
         )
         #
-        message_statistics = '{0:.1f} fps, elapsed {1}, {2} images'.format(
+        message_statistics = '{0:.1f} fps, elapsed {1}, {2} images, {3}C.'.format(
             self.ia.statistics.fps,
             str(datetime.timedelta(
                 seconds=int(self.ia.statistics.elapsed_time_s)
             )),
-            self.ia.statistics.num_images
+            self.ia.statistics.num_images,
+            20
         )
         #
         self._signal_update_statistics.emit(

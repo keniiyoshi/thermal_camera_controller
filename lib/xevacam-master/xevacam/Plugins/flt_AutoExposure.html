@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>Auto exposure</title>
+		<link href="flt.css" rel="stylesheet" type="text/css">
+	</head>
+<body>
+<h1>Image filter documentation: Auto exposure</h1>
+<table border="0" cellpadding="0" cellspacing="0">
+
+<!--AutoExposure -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="AutoExposure">AutoExposure</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Programming name<br/>
+	    Programming name to be used in Xeneth GUI application settings "Auto start filters" or when queueing the filter while programming with Xeneth SDK. 
+	</td>
+</tr>
+
+<!--IntegrationTimeMin -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="IntegrationTimeMin">IntegrationTimeMin</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Minimal integration time [Read/Write]<br/>
+	    Lower bound on the integration times used.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Value: Positive number <br></td>
+</tr>
+
+<!--IntegrationTimeMax -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="IntegrationTimeMax">IntegrationTimeMax</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Maximal integration time [Read/Write]<br/>
+	    Upper bound on the integration times used.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Value: Positive number <br></td>
+</tr>
+
+<!--Mode -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="Mode">Mode</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Mode [Read/Write]<br/>
+       Select whether either the average image value or the top of the histogram is steered to the <a href="#Target">Target value</a>. 
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: Top(0), Average(1).<br></td>
+</tr>
+
+<!--Target -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="Target">Target</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Target value (%) [Read/Write]<br/>
+       Depending on the selected <a href="#Mode">Mode</a> either the average image value or the top of the histogram is steered to the Target value.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: floating number in [0,100]. <br></td>
+</tr>
+
+<!--Tolerance -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="Tolerance">Tolerance</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Tolerance (%) [Read/Write]<br/>
+       As soon as the difference between the current image value and the <a href="#Target">Target value</a> is larger than the Tolerance, a new integration time is searched for.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: floating number in [0,100]. <br></td>
+</tr>
+
+
+<!--Outliers -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="Outliers">Outliers</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Outliers (%) [Read/Write]<br/>
+       Outliers defined as percentage of the total amount op pixels.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: floating number in [0,100]. <br></td>
+</tr>
+
+</table>
+
+</body>
+</html>

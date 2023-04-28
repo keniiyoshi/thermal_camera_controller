@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>Smoothing</title>
+		<link href="flt.css" rel="stylesheet" type="text/css">
+	</head>
+<body>
+<h1>Image filter documentation: Smoothing</h1>
+<table border="0" cellpadding="0" cellspacing="0">
+<!--Smoothing -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="Smoothing">Smoothing</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Programming name<br/>
+	    Programming name to be used in Xeneth GUI application settings "Auto start filters" or when queueing the filter while programming with Xeneth SDK. 
+	</td>
+</tr>
+<!--MatSizeX -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="MatSizeX">MatSizeX</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Matrix size X [Read/Write]<br/>
+       The filter replaces every pixel by an average value of the pixel and its neighbouring pixels. The pixels taken into account are those within the rectangle defined by <a href="
+	   #MatSizeX"> Matrix size X</a>
+	   and  <a href="#MatSizeY"> Matrix size Y</a>.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: odd integer in larger than 3<br></td>
+</tr>
+
+<!--MatSizeY -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="MatSizeY">MatSizeY</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Matrix size Y [Read/Write]<br/>
+       The filter replaces every pixel by an average value of the pixel and its neighbouring pixels. The pixels taken into account are those within the rectangle defined by <a href="#MatSizeX"> Matrix size X</a>
+	   and  <a href="#MatSizeY"> Matrix size Y</a>.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: odd integer in larger than 3<br></td>
+</tr>
+
+</table>
+
+</body>
+</html>

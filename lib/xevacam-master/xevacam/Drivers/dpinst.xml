@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<dpInst>
+
+	<language code="0x0409">
+		<dpinstTitle>XenICs</dpinstTitle>
+		
+		<welcomeTitle>Welcome to the Xeva camera installer!</welcomeTitle>
+		<welcomeIntro>This wizard will walk you through updating the drivers for your camera.</welcomeIntro>
+		
+		<eulaHeaderTitle>End User License Agreement</eulaHeaderTitle>
+		<eulaYesButton>I &amp;accept this EULA</eulaYesButton>
+		<eulaNoButton>I do &amp;not accept this EULA</eulaNoButton>
+		
+		<installHeaderTitle>Installing...</installHeaderTitle>
+		
+		<finishTitle>Congratulations!</finishTitle>
+		<finishText>Enjoy using your camera.</finishText>
+		
+		<eula type="txt" path="license.txt" />
+	</language>
+
+	<search>
+	  <subDirectory>xenics.inf</subDirectory>
+	</search>
+
+	<watermarkPath>watermark.bmp</watermarkPath>
+	
+	<deleteBinaries />
+	<legacyMode />
+	<forceIfDriverIsNotBetter />
+</dpInst>

@@ -1,0 +1,13 @@
+LICENSE
+README.md
+setup.py
+xevacam/__init__.py
+xevacam/camera.py
+xevacam/streams.py
+xevacam/utils.py
+xevacam/xevadll.py
+xevacam.egg-info/PKG-INFO
+xevacam.egg-info/SOURCES.txt
+xevacam.egg-info/dependency_links.txt
+xevacam.egg-info/requires.txt
+xevacam.egg-info/top_level.txt

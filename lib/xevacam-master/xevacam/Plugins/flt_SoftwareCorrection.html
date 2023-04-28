@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>SoftwareCorrection</title>
+		<link href="flt.css" rel="stylesheet" type="text/css">
+	</head>
+<body>
+<h1>Image filter documentation: Software correction</h1>
+<table border="0" cellpadding="0" cellspacing="0">
+
+<!--SoftwareCorrection-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="SoftwareCorrection">SoftwareCorrection</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Programming name<br/>
+	    Programming name to be used when queueing the filter while programming with Xeneth SDK. 
+	</td>
+</tr>
+
+<!--Mode -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="Mode">Mode</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Mode [Read/Write] <br/>
+    <i>Correct:</i> bad pixels are replaced and a non uniformity correction is applied.</br> 
+	<i>Show offset:</i> the data used to compensate for fixed pattern noise (FPN) is shown. </br>
+    <i>Show gain:</i> the data used to compensate for photon response non uniformity (PRNU) is shown.	 </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: Correct(0), Show offset(1), Show gain(2), Passthrough(2)<br></td>
+</tr>
+
+<!--Replacement -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="Mode">Replacement</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Replacement [Read/Write] <br/>
+    Select the algorithm to be applied for replacing bad pixels.</br>
+	</br>
+	In case of a 2D sensor the following strategies are available:</br>
+	<i>None:</i> no pixels are replaced.</br>
+	<i>Adaptive:</i> a representative neighbour is copied.</br>
+	<i>Vertical:</i> the pixel above is copied. </br>
+	<i>Vertical interpolation:</i> interpolation between two pixels in the same column.</br>
+	<i>Horizontal:</i> the left pixel copied. </br>
+	<i>Horizontal interpolation:</i> interpolation between two pixels in the same row.</br>
+	</br>
+	In case of a line array the following strategies are available:</br>
+	<i>None:</i> no pixels are replaced.</br>
+	<i>Linear:</i> the left pixel is copied.</br></br>
+	
+	<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values(2D): None(0), Adaptive(1), Vertical(2), Vertical interpolation(3), Horizontal(4), Horizontal interpolation(5)</br>
+	</td>
+	
+    <tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values(1D): None(0), Linear(1)</br>
+	</td>
+</tr>
+
+<!--KeepOffset-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="KeepOffset">KeepOffset</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Keep offset [Read/Write] <br/>
+      <i>No:</i> the FPN correction (dark current) is subtracted from the signal. </br>
+	  <i>Yes:</i> the overall image level is preserved.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: Yes(0), No(1)<br></td>
+</tr>
+
+<!--DarkOffset-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="DarkOffset">DarkOffset</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Offset correction [Read/Write] <br/>
+		Global offset that is subtracted from the FPN correction data before the correction is applied.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer<br></td>
+</tr>
+
+<!--BlackClip-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="BlackClip">BlackClip</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Black clip [Read/Write] <br/>
+		Pixel values below this threshold are clipped to the value.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer<br></td>
+</tr>
+
+<!--WhiteClip-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="WhiteClip">WhiteClip</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">White clip [Read/Write] <br/>
+		Pixel values above this threshold are clipped to the value.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer<br></td>
+</tr>
+
+<!--GainAdjustment-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="GainAdjustment">GainAdjustment</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Gain multiplier [Read/Write] <br/>
+		Factor multiplied to the response of the camera.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: floating number<br></td>
+</tr>
+
+
+
+</table>
+
+</body>
+</html>

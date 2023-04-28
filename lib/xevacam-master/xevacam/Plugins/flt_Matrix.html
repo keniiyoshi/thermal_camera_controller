@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>Matrix</title>
+		<link href="flt.css" rel="stylesheet" type="text/css">
+	</head>
+<body>
+<h1>Image filter documentation: Matrix</h1>
+<table border="0" cellpadding="0" cellspacing="0">
+
+<!--Matrix -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="Matrix">Matrix</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Programming name<br/>
+	    Programming name to be used in Xeneth GUI application settings "Auto start filters" or when queueing the filter while programming with Xeneth SDK. 
+	</td>
+</tr>
+
+<!--Overlay -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="Matrix">Matrix</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Matrix [Read/Write]<br/>
+	    The n^2 entries of a n x n matrix that defines a convolution filter. <br/>
+	    For example: "0;0;0;0;1;0;0;0;0" for a 3 times 3 matrix.
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Value: c-string of semi-colon separated numbers. <br></td>
+</tr>
+
+<!--Divisor -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="Divisor">Divisor</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Divisor [Read/Write]<br/>
+       Each matrix element is divided by the divisor. 
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: positive number.<br></td>
+</tr>
+
+<!--Offset -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="Offset">Offset</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Offset [Read/Write]<br/>
+       Number added to each matrix element. 
+	</td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: number.<br></td>
+</tr>
+
+
+</table>
+
+</body>
+</html>

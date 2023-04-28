@@ -1,0 +1,362 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>Auto gain</title>
+		<link href="flt.css" rel="stylesheet" type="text/css">
+	</head>
+<body>
+<h1>Image filter documentation: Auto offset and gain</h1>
+<table border="0" cellpadding="0" cellspacing="0">
+
+<!--AutoOffsetAndGain -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="AutoOffsetAndGain">AutoOffsetAndGain</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Programming name<br/>
+	    Programming name to be used in Xeneth GUI application settings "Auto start filters" or when queueing the filter while programming with Xeneth SDK. </br>
+		Not available on Linux.
+	</td>
+</tr>
+
+<!--Offset control -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="OffsetControl">OffsetControl</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Offset control [Read/Write] <br/>
+    In manual mode the <a href="#ManualModeOffset">Offset</a> is applied to the image. Otherwise the offset (see <a href="#OffsetUsed">Offset used</a>) is computed based on the image content. 
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: Automatic(0), Manual(1)<br></td>
+</tr>
+
+<!--Gain control -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="GainControl">GainControl</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Gain control [Read/Write] <br/>
+    In manual mode the <a href="#ManualModeGain">Gain</a> is applied to the image. Otherwise the gain (see <a href="#GainUsed">Gain used</a>) is computed based on the image content. 
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: Automatic(0), Manual(1)<br></td>
+</tr>
+
+
+<!--Auto mode update-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="AutoModeUpdate">AutoModeUpdate</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Auto mode update [Read/Write] <br/>
+    When stopped, the computed values for offset and gain are frozen.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: Running(0), Stopped(1)<br></td>
+</tr>
+
+<!--Offset used (%)-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="OffsetUsed">OffsetUsed</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Offset used (%) [Read] <br/>
+    Offset currently used.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: number in [-100,100]<br></td>
+</tr>
+
+
+<!--Gain used-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="GainUsed">GainUsed</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Gain used [Read] <br/>
+    Gain currently used.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: positive number<br></td>
+</tr>
+
+<!--Offset (%)-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="ManualModeOffset">ManualModeOffset</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Offset (%) [Read/Write] <br/>
+    This value is applied when <a href="#OffsetControl">OffsetControl</a> is manual. 
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: number in [-100,100]<br></td>
+</tr>
+
+
+<!--Gain-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="ManualModeGain">ManualModeGain</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Gain [Read/Write] <br/>
+    This value is applied when <a href="#GainControl">GainControl</a> is manual.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: positive number<br></td>
+</tr>
+
+<!--Output histogram midpoint (%)-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="AutoModeOutputHistogramMidpoint">AutoModeOutputHistogramMidpoint</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Output histogram midpoint (%) [Write/Read] <br/>
+    The target value for the histogram midpoint when <a href="#OffsetControl">OffsetControl</a> is Automatic. <br/> 
+    More precisely the value for <a href="#InputHistogramMidpoint">Input histogram midpoint</a> is mapped onto the output histogram midpoint.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: number in [0,100]<br></td>
+</tr>
+
+<!--Maximal gain-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="AutoModeMaximalGain">AutoModeMaximalGain</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Maximal gain [Read/Write]<br/>
+    The maximal gain applied when <a href="#GainControl">GainControl</a> is Automatic.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: positive number.<br></td>
+</tr>
+
+<!--Regulation speed-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="AutoModeRegulationSpeed">AutoModeRegulationSpeed</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Regulation speed [Read/Write] <br/>
+    Defines the response time to changes in the image.<br/> 
+    When zero, the response immediate. 
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer in [0,9]<br></td>
+</tr>
+
+<!--Outliers expressed as-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="OutliersExpressedAs">OutliersExpressedAs</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Outliers expressed as [Read/Write] <br/>
+   Outliers are pixels at the start or at the end of the image histogram that are not taken into account when <a href="#OffsetUsed">Offset used</a> and <a href="#GainUsed">Gain used</a> are computed. </br>
+   When put to "% of current image size", a fixed amount of pixels is ignored. Otherwise pixels are ignored when their value is too low/too high. </br>
+   The thresholds are define by <a href="#OutliersDark">Dark</a>/<a href="#OutliersBright">Bright</a>.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: % of current image size (0),% of maximal intensity (1)<br></td>
+</tr>
+
+
+
+<!--Dark (%)-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="OutliersDark">OutliersDark</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Dark (%) [Read/Write] <br/>
+    Threshold for the dark outliers. See <a href="#OutliersExpressedAs">Outliers expressed as</a>.  
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: number in [0,100]<br></td>
+</tr>
+
+
+<!--Bright (%)-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="OutliersBright">OutliersBright</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Bright (%) [Read/Write] <br/>
+    Threshold for the bright outliers. See <a href="#OutliersExpressedAs">Outliers expressed as</a>.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: Values: number in [0,100]<br></td>
+</tr>
+
+
+<!--Bright display colour-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="OutliersBrightDisplayColor">OutliersBrightDisplayColor</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Bright display colour [Read/Write] <br/>
+    To stress that bright outliers do not contain valuable information, they can be coloured black.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: White(0), Black(1)<br></td>
+</tr>
+
+
+
+<!--Input histogram begin (%)-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="InputHistogramBegin">InputHistogramBegin</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Input histogram begin (%) [Read/Write] <br/>
+    The relevant input for the algorithm is the image histogram minus the outliers. <br/> 
+    When setting the Input histogram begin to a strictly positive value the start of the histogram taken into account is shifted up by ignoring the darker part of the image. </br>
+    The value is expressed as a percentage of the relevant histogram width.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: number in [0,100]<br></td>
+</tr>
+
+<!--Input histogram midpoint (%)-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="InputHistogramMidpoint">InputHistogramMidpoint</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Input histogram midpoint (%) [Read/Write] <br/>
+    The relevant input for the algorithm is the image histogram minus the outliers. <br/> 
+    The input histogram midpoint allows redefing the point in the input histogram that ends up at 
+    the <a href="#AutoModeOutputHistogramMidpoint">Output histogram midpoint</a>.</br>
+    The value is expressed as a percentage of the relevant histogram width.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: number in [0,100]<br></td>
+</tr>
+
+
+<!--Input histogram end (%)-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="InputHistogramEnd">InputHistogramEnd</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Input histogram end (%) [Read/Write] <br/>
+    The relevant input for the algorithm is the image histogram minus the outliers.<br/> 
+    When setting the Input histogram end to a value strictly less than 100% the end of the histogram taken into account is shifted down by ignoring the brighter part of the image. </br>The value is expressed as a percentage of the relevant histogram width.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: number in [0,100]<br></td>
+</tr>
+
+<!--Offset X-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="WindowOffsetX">WindowOffsetX</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Offset X [Read/Write] <br/>
+    Only pixels in the window defined by <a href="#WindowOffsetX">Offset X</a>, <a href="#WindowOffsetY">Offset Y</a>, <a href="#WindowWidth">Width</a> and <a href="#WindowHeight">Height</a> are taken into account.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer in [0,width of the image - 1]<br></td>
+</tr>
+
+<!--Offset Y-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="WindowOffsetY">WindowOffsetY</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Offset Y [Read/Write] <br/>
+    Only pixels in the window defined by <a href="#WindowOffsetX">Offset X</a>, <a href="#WindowOffsetY">Offset Y</a>, <a href="#WindowWidth">Width</a> and <a href="#WindowHeight">Height</a> are taken into account.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer in [0,height of the image - 1]<br></td>
+</tr>
+
+<!--Width-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="WindowWidth">WindowWidth</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Width [Read/Write] <br/>
+    Only pixels in the window defined by <a href="#WindowOffsetX">Offset X</a>, <a href="#WindowOffsetY">Offset Y</a>, <a href="#WindowWidth">Width</a> and <a href="#WindowHeight">Height</a> are taken into account.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer in [1,width of the image]<br></td>
+</tr>
+
+
+<!--Height-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="WindowHeight">WindowHeight</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Height [Read/Write] <br/>
+    Only pixels in the window defined by <a href="#WindowOffsetX">Offset X</a>, <a href="#WindowOffsetY">Offset Y</a>, <a href="#WindowWidth">Width</a> and <a href="#WindowHeight">Height</a> are taken into account.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer in [1,height of the image]<br></td>
+</tr>
+
+</table>
+
+</body>
+</html>

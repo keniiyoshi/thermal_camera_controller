@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>Histogram equalisation</title>
+		<link href="flt.css" rel="stylesheet" type="text/css">
+	</head>
+<body>
+<h1>Image filter documentation: Histogram equalisation</h1>
+<table border="0" cellpadding="0" cellspacing="0">
+
+<!--HistogramEqualisation -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="HistogramEqualisation">HistogramEqualisation</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Programming name<br/>
+	    Programming name to be used in Xeneth GUI application settings "Auto start filters" or when queueing the filter while programming with Xeneth SDK.</br>
+		Not available on Linux. 
+	</td>
+</tr>
+
+<!--Mode -->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="HistogramEqualisationMode">HistogramEqualisationMode</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Mode [Read/Write] <br/>
+    In Regions mode the image is subdivided in regions according to <a href="#HistogramEqualisationXRegions">X Regions</a> and <a href="#HistogramEqualisationYRegions">Y Regions</a>. The map used to transform a pixel depends on the local histogram. In the Window mode the image will only be optimized in the window defined by <a href="#WindowOffsetX">Offset X</a>, <a href="#WindowOffsetX">Offset Y</a>, <a href="#WindowWidth">Width</a> and <a href="#WindowHeight">Height</a>.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: Regions(0), Window(1)<br></td>
+</tr>
+
+<!--HistogramEqualisationClipLimit-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="HistogramEqualisationClipLimit">HistogramEqualisationClipLimit</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Clip limit [Read/Write] <br/>
+    Defines the strength of the contrast enhancement.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: number in [0,100]<br></td>
+</tr>
+
+
+<!--HistogramEqualisationXRegions-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="HistogramEqualisationXRegions">HistogramEqualisationXRegions</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">X regions [Read/Write] <br/>
+    When <a href="#HistogramEqualisationMode">Mode</a> is Regions, the image is divided into equally sized regions. The width of each of these regions is the image width divided by X regions.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer in [1,8]<br></td>
+</tr>
+
+<!--HistogramEqualisationYRegions-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="HistogramEqualisationYRegions">HistogramEqualisationYRegions</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Y regions [Read/Write] <br/>
+        When <a href="#HistogramEqualisationMode">Mode</a> is Regions, the image is divided into equally sized regions. The height of each of these regions is the image height divided by Y regions.
+    </td>
+</tr>
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer in [1,8]<br></td>
+</tr>
+
+<!--Offset X-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="WindowOffsetX">WindowOffsetX</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Offset X [Read/Write] <br/>
+    When <a href="#HistogramEqualisationMode">Mode</a> is Window, pixels in the window defined by <a href="#WindowOffsetX">Offset X</a>, <a href="#WindowOffsetY">Offset Y</a>, <a href="#WindowWidth">Width</a> and <a href="#WindowHeight">Height</a> are taken into account to define the image transformation.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer in [0,width of the image - 1]<br></td>
+</tr>
+
+<!--Offset Y-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="WindowOffsetY">WindowOffsetY</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Offset Y [Read/Write] <br/>
+        When <a href="#HistogramEqualisationMode">Mode</a> is Window, pixels in the window defined by <a href="#WindowOffsetX">Offset X</a>, <a href="#WindowOffsetY">Offset Y</a>, <a href="#WindowWidth">Width</a> and <a href="#WindowHeight">Height</a> are taken into account to define the image transformation.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer in [0,height of the image - 1]<br></td>
+</tr>
+
+<!--Width-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="WindowWidth">WindowWidth</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Width [Read/Write] <br/>
+        When <a href="#HistogramEqualisationMode">Mode</a> is Window, pixels in the window defined by <a href="#WindowOffsetX">Offset X</a>, <a href="#WindowOffsetY">Offset Y</a>, <a href="#WindowWidth">Width</a> and <a href="#WindowHeight">Height</a> are taken into account to define the image transformation.
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer in [1,width of the image]<br></td>
+</tr>
+
+
+<!--Height-->
+<tr>
+	<td class="memItemLeft" nowrap align="right" valign="top">
+	<a class="anchor" name="WindowHeight">WindowHeight</a>	
+	</td>
+	<td class="memItemRight" valign="bottom">Height [Read/Write] <br/>
+        When <a href="#HistogramEqualisationMode">Mode</a> is Window, pixels in the window defined by <a href="#WindowOffsetX">Offset X</a>, <a href="#WindowOffsetY">Offset Y</a>, <a href="#WindowWidth">Width</a> and <a href="#WindowHeight">Height</a> are taken into account to define the image transformation. 
+    </td>
+</tr>
+
+<tr>
+	<td class="mdescLeft">&nbsp;</td>
+	<td class="mdescRight">Values: integer in [1,height of the image]<br></td>
+</tr>
+
+</table>
+
+</body>
+</html>
