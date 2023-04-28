@@ -116,7 +116,8 @@ class RawPreviewWindow(PreviewWindow):
 
 class LineScanWindow(PreviewWindow):
 
-    def __init__(self, camera, layer_num, num_of_lines=500, interval=60,
+    # ken. trying 480 instead of 500
+    def __init__(self, camera, layer_num, num_of_lines=480, interval=60,
                  title='Line scan'):
         super().__init__(camera, title)
         self.layer_num = layer_num
@@ -134,8 +135,12 @@ class LineScanWindow(PreviewWindow):
     def show_thread(self, layer_num, num_of_lines=500, interval=60):
         self.fig = plt.figure()
         self.fig.canvas.set_window_title(self.title)
+        # canvas = np.zeros(
+        #     (num_of_lines, self.dims[1]), dtype=self.pixel_dtype)
         canvas = np.zeros(
             (num_of_lines, self.dims[1]), dtype=self.pixel_dtype)
+        # canvas = np.zeros(
+        #     (self.dims[0], self.dims[1]), dtype=self.pixel_dtype)
         im = plt.imshow(canvas)
         # im.set_data(image(stream))
 
@@ -145,11 +150,23 @@ class LineScanWindow(PreviewWindow):
                               self.size,
                               self.dims,
                               self.pixel_size)
-            canvas[:num_of_lines-1, :] = canvas[1:, :]
-            canvas[num_of_lines-1, :] = img[layer_num, :]
+            # canvas[:num_of_lines-1, :] = canvas[1:, :]
+            # canvas[num_of_lines-1, :] = img[layer_num, :]
 
-            im.set_data(canvas)
-            im.set_clim(vmin=0, vmax=10000)
+            # seems to work??
+            # canvas = np.copy(img)
+
+            # canvas = translate(img, 0, 2**16-1, 0, 255)
+
+            # image = np.copy(img)
+            # image *= int((255.0 / image.max()))
+            # canvas = image.astype(int)
+
+            # im.set_data(translate(canvas, 0, 2**16-1, 0, 255))
+            # im.set_data(img)
+            im.set_data(img)
+            # im.set_clim(vmin=0, vmax=10000)
+            im.set_clim(vmin=0, vmax=img.max())
             # self.fig.draw()
             return im,
 
@@ -205,3 +222,14 @@ def kbinterrupt_decorate(func):
 def get_time():
     return int(round(time.time()*1000))
 
+# ken
+def translate(value, leftMin, leftMax, rightMin, rightMax):
+    # Figure out how 'wide' each range is
+    leftSpan = leftMax - leftMin
+    rightSpan = rightMax - rightMin
+
+    # Convert the left range into a 0-1 range (float)
+    valueScaled = float(value - leftMin) / float(leftSpan)
+
+    # Convert the 0-1 range into a value in the right range.
+    return rightMin + (valueScaled * rightSpan)

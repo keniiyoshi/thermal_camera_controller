@@ -31,8 +31,21 @@ if __name__ == '__main__':
     # cam = camera.XevaCam(calibration='C:\\MyTemp\\envs\\xevacam\\Lib\\site-packages\\3ms_196_xeneth3.xca')
     print('C:\\Program Files\\Xeneth\\Calibrations\\XR[-20-120]-18mm-(29-05-2018)_10551.xca')
     cam = camera.XevaCam(calibration='C:\\Program Files\\Xeneth\\Calibrations\\XR[-20-120]-18mm-(29-05-2018)_10551.xca')
+    # print('C:\\Program Files\\Xeneth\\Calibrations\\nov30-test1-1130-30us_10551.xca')
+    # cam = camera.XevaCam(calibration='C:\\Program Files\\Xeneth\\Calibrations\\nov30-test1-1130-30us_10551.xca')
+
+    # # Open connection to camera
+    # with cam.opened() as c:
+    #     # Create a window and connect it to the camera output
+    #     # Line scanner view. Show 30th line in the frame (30th band in data cube)
+    #     window = utils.LineScanWindow(cam, 30)
+    #     c.start_recording()
+    #     window.show()  # Show it
+    #     c.wait_recording(5)
+    #     meta = c.stop_recording()
+
     # stream = streams.XevaStream()
-    file_stream = open('myfile.bin', 'wb')
+    file_stream = open('./../../../../data/xevacam/myfile.bin', 'wb')
     # bytes_stream = io.BytesIO()
 
     # cam.set_handler(stream)

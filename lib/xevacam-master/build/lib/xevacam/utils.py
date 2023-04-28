@@ -134,7 +134,9 @@ class LineScanWindow(PreviewWindow):
     def show_thread(self, layer_num, num_of_lines=500, interval=60):
         self.fig = plt.figure()
         self.fig.canvas.set_window_title(self.title)
-        canvas = np.zeros(
+        # canvas = np.zeros(
+        #     (num_of_lines, self.dims[1]), dtype=self.pixel_dtype)
+        canvas = 200*np.ones(
             (num_of_lines, self.dims[1]), dtype=self.pixel_dtype)
         im = plt.imshow(canvas)
         # im.set_data(image(stream))
