@@ -29,8 +29,9 @@ def image(stream, size, dims, pixel_size_bytes):
 
 if __name__ == '__main__':
     # cam = camera.XevaCam(calibration='C:\\MyTemp\\envs\\xevacam\\Lib\\site-packages\\3ms_196_xeneth3.xca')
-    print('C:\\Program Files\\Xeneth\\Calibrations\\XR[-20-120]-18mm-(29-05-2018)_10551.xca')
+    # print('C:\\Program Files\\Xeneth\\Calibrations\\XR[-20-120]-18mm-(29-05-2018)_10551.xca')
     cam = camera.XevaCam(calibration='C:\\Program Files\\Xeneth\\Calibrations\\XR[-20-120]-18mm-(29-05-2018)_10551.xca')
+    # cam = camera.XevaCam()
     # print('C:\\Program Files\\Xeneth\\Calibrations\\nov30-test1-1130-30us_10551.xca')
     # cam = camera.XevaCam(calibration='C:\\Program Files\\Xeneth\\Calibrations\\nov30-test1-1130-30us_10551.xca')
 
