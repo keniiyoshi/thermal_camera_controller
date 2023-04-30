@@ -10,7 +10,7 @@ How to run (March 24, 2023):
     The program won't work if you try to compile through the IPython console. Run it from Anaconda's CMD.exe Prompt.
     Once it runs, open the mvGenTLProducer.cti file in the C:\Program Files\MATRIX VISION\mvIMPACT Acquire\bin\x64 folder.
 
-site packages that I have edited in order to eliminate warnings and erros:
+site packages that I have edited in order to eliminate warnings and errors:
  C:\ProgramData\Anaconda3\envs\pycharmHarvesterPython3_7\Lib\site-packages\harvesters\core.py
  C:\ProgramData\Anaconda3\envs\pycharmHarvesterPython3_7\Lib\site-packages\harvesters_gui\frontend\pyqt5.py
  C:\ProgramData\Anaconda3\envs\pycharmHarvesterPython3_7\Lib\site-packages\harvesters_gui\_private\frontend\canvas.py

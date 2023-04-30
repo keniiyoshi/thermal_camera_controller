@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: harvesters-gui
-Version: -gui-for-crystals-master
+Version: 0.post0.dev22
 Summary: Graphical user interfce of Harvester
 Home-page: https://github.com/genicam/harvesters_gui
 Download-URL: https://pypi.org/project/harvesters_gui/

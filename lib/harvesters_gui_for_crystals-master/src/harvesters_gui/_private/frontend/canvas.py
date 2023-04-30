@@ -395,7 +395,13 @@ class Canvas2D(CanvasBase):
                     # Then cast each array element to an uint8:
                     content = content.astype(np.uint8)
 
-                self._program['texture'] = content
+                # Ken edit for editing display image.
+                new_content = 8*(content - 100 * np.ones((height, width)))
+                new_content_formatted = new_content.astype(dtype='uint8')
+                # print('test\n')
+
+                self._program['texture'] = new_content_formatted
+                # self._program['texture'] = content
 
     def _draw(self):
         self._program.draw('triangle_strip')
