@@ -5,8 +5,9 @@ Created on 9.11.2016
 '''
 
 import xevacam.camera as camera
-# import matplotlib
-# import pylab  # Shows the figure in Eclipse + PyDev
+# ken. ahh the matplotlib does give error since it is not in the main loop!
+import matplotlib; matplotlib.use("TkAgg")
+import pylab # Shows the figure in Eclipse + PyDev
 # from ctypes import create_string_buffer, c_char_p
 # import numpy as np
 import io
