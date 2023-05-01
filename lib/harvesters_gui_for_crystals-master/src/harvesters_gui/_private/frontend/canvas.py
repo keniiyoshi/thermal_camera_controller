@@ -391,17 +391,36 @@ class Canvas2D(CanvasBase):
                     # The following code may affect to the rendering
                     # performance:
                     content = (content / (2 ** exponent))
+                    # ken edit:
+                    # content = 2*12*((content / (2 ** exponent)) - 114 * np.ones((height, width)))
+
+                    def translate(value, leftMin, leftMax, rightMin, rightMax):
+                        # Figure out how 'wide' each range is
+                        leftSpan = leftMax - leftMin
+                        rightSpan = rightMax - rightMin
+
+                        # Convert the left range into a 0-1 range (float)
+                        valueScaled = (value - leftMin * np.ones((height, width))) / float(leftSpan)
+
+                        # Convert the 0-1 range into a value in the right range.
+                        return rightMin * np.ones((height, width)) + (valueScaled * rightSpan)
+
+                    content = translate(content, np.min(content), np.max(content), 0.0, 255.0)
 
                     # Then cast each array element to an uint8:
                     content = content.astype(np.uint8)
 
-                # Ken edit for editing display image.
-                new_content = 8*(content - 100 * np.ones((height, width)))
-                new_content_formatted = new_content.astype(dtype='uint8')
-                # print('test\n')
+                    # Ken edit for editing display image.
+                    # new_content = 6 * (content - 100 * np.ones((height, width)))
+                    # new_content_formatted = new_content.astype(np.uint8)
+                    # print('test\n')
 
-                self._program['texture'] = new_content_formatted
-                # self._program['texture'] = content
+
+
+                # self._program['texture'] = new_content_formatted
+                self._program['texture'] = content
+
+
 
     def _draw(self):
         self._program.draw('triangle_strip')
@@ -455,3 +474,4 @@ class Canvas2D(CanvasBase):
             self._coordinate[0] -= (delta[0] * ratio)
             self._coordinate[1] += (delta[1] * ratio)
             self.apply_magnification()
+

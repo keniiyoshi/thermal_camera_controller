@@ -146,7 +146,7 @@ delay(100);
 float getTemp() {
   int an_value = analogRead(A0);
   // apr27, 2023 edit:
-  float mid_value = ((float(an_value) / (1024.0 - 1.0)) * 5.0 - 1.25) / 0.005 +15.00;
+  float mid_value = ((float(an_value) / (1024.0 - 1.0)) * 5.0 - 1.25) / 0.005 +18.00;
   // float mid_value = ((float(an_value) / (1024.0 - 1.0)) * 5.0 - 1.25) / 0.005;
   // return ((float(an_value) / (1024.0 - 1.0)) * 5.0 - 1.25) / 0.005 - 6.0; // before nov 1st. maps [0,1023]mV*˚C to [-256, 744]˚C . 31.39 or 32.37 , 32.7 actually
   // Nov 1. fixing temperature difference: finger:31.8vs 46.0 (14 deg difference). ambient:22 vs 36 (14 degrees difference)) 
