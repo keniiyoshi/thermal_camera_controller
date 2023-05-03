@@ -118,6 +118,9 @@ class CanvasBase(app.Canvas):
             self.apply_magnification()
 
     def on_draw(self, event):
+
+        static_arr2 = np.loadtxt("./../../data/sample-vignette-may3.csv", delimiter = ",", dtype = np.uint16)
+
         # Update on June 15th, 2018:
         # According to a VisPy developer, they have not finished
         # porting VisPy to PyQt5. Once they finished the development
@@ -136,7 +139,7 @@ class CanvasBase(app.Canvas):
                 buffer = self.ia.fetch(timeout=0.0001)
 
                 # Prepare a texture to draw:
-                self._prepare_texture(buffer)
+                self._prepare_texture(buffer,static_arr2)
 
                 # Draw the texture until the buffer object exists
                 # within this scope:
@@ -325,7 +328,8 @@ class Canvas2D(CanvasBase):
         #
         self.apply_magnification()
 
-    def _prepare_texture(self, buffer):
+    def _prepare_texture(self, buffer, static_arr):
+
         update = True
         if buffer.payload_type not in self._visible_payloads:
             update = False
@@ -390,9 +394,29 @@ class Canvas2D(CanvasBase):
                 if exponent > 0:
                     # The following code may affect to the rendering
                     # performance:
-                    content = (content / (2 ** exponent))
+                    # content = (content / (2 ** exponent))
                     # ken edit:
                     # content = 2*12*((content / (2 ** exponent)) - 114 * np.ones((height, width)))
+
+
+                    # ken: probably add vignette removal function here. divide by value/min
+                    def remove_vignette(value,arr):
+
+                        # mask = value - raw_min * np.ones((height, width)))
+
+                        # arr = np.loadtxt("./../../data/sample-vignette-may3.csv", delimiter = ",", dtype = np.uint16)
+
+                        # # Figure out how 'wide' each range is
+                        # leftSpan = np.divide(value,(np.divide(arr,np.min(arr))))
+                        # rightSpan = rightMax - rightMin
+                        #
+                        # # Convert the left range into a 0-1 range (float)
+                        # valueScaled = (value - raw_min * np.ones((height, width))) / float(leftSpan)
+
+                        # Convert the 0-1 range into a value in the right range.
+                        return np.divide(value,(np.divide(arr,np.min(arr))))
+
+                    content = remove_vignette(content, static_arr)
 
                     def translate(value, leftMin, leftMax, rightMin, rightMax):
                         # Figure out how 'wide' each range is
@@ -404,6 +428,8 @@ class Canvas2D(CanvasBase):
 
                         # Convert the 0-1 range into a value in the right range.
                         return rightMin * np.ones((height, width)) + (valueScaled * rightSpan)
+
+
 
                     content = translate(content, np.min(content), np.max(content), 0.0, 255.0)
 
