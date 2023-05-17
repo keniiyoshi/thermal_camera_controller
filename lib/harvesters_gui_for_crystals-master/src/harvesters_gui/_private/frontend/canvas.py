@@ -90,6 +90,9 @@ class CanvasBase(app.Canvas):
         #
         self._buffers = []
 
+        self._static_arr2 = np.loadtxt("./../../data/sample-vignette-may3.csv", delimiter=",", dtype=np.uint16)
+        self._static_arr3 = np.loadtxt("./../../data/sample-noise-may5.csv", delimiter=",", dtype=np.uint16)
+
     @property
     def display_rate(self):
         return self._display_rate
@@ -119,7 +122,9 @@ class CanvasBase(app.Canvas):
 
     def on_draw(self, event):
 
-        static_arr2 = np.loadtxt("./../../data/sample-vignette-may3.csv", delimiter = ",", dtype = np.uint16)
+
+
+        # static_arr2 = np.loadtxt("./../../data/sample-vignette-may3.csv", delimiter = ",", dtype = np.uint16)
 
         # Update on June 15th, 2018:
         # According to a VisPy developer, they have not finished
@@ -139,7 +144,7 @@ class CanvasBase(app.Canvas):
                 buffer = self.ia.fetch(timeout=0.0001)
 
                 # Prepare a texture to draw:
-                self._prepare_texture(buffer,static_arr2)
+                self._prepare_texture(buffer,self._static_arr2)
 
                 # Draw the texture until the buffer object exists
                 # within this scope:
@@ -324,6 +329,9 @@ class Canvas2D(CanvasBase):
         self._program['texture'] = np.zeros(
             (self._height, self._width), dtype='uint8'
         )
+        self._temperature = np.zeros(
+            (self._height, self._width), dtype=np.float32
+        )
 
         #
         self.apply_magnification()
@@ -417,6 +425,24 @@ class Canvas2D(CanvasBase):
                         return np.divide(value,(np.divide(arr,np.min(arr))))
 
                     content = remove_vignette(content, static_arr)
+                    content = remove_vignette(content, self._static_arr3)
+
+                    def ADUtoTemp(array):
+                        room_temp = 23.0 # default temperature
+                        # determine what pixel value corresponds to default temperature.
+                        # between the room temperature min max of [26395.9,26908.99] after noise removal, at focused distance for peltier cell.
+                        # so there is a range depending on the reflectiveness of the material!
+                        # it will probably be better to use ADU (analog digital unit) from a non-reflective material.
+                        # this is analogous to measuring temperature at a shady, dark space.
+                        # For reference, at focused distance, the foam gives a range of [26452.0,26815.9] after noise removal, so a value f
+                        # from here should be used.
+
+                        return np.ones((height, width)) + array
+
+                    self._temperature = ADUtoTemp(content)
+
+                    # for viewing on the debugger
+                    test = self._temperature
 
                     def translate(value, leftMin, leftMax, rightMin, rightMax):
                         # Figure out how 'wide' each range is
@@ -441,10 +467,16 @@ class Canvas2D(CanvasBase):
                     # new_content_formatted = new_content.astype(np.uint8)
                     # print('test\n')
 
+                    # section for checking temperature value within the debugger.
+
+
+
 
 
                 # self._program['texture'] = new_content_formatted
                 self._program['texture'] = content
+
+
 
 
 
