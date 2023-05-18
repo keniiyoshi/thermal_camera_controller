@@ -436,8 +436,26 @@ class Canvas2D(CanvasBase):
                         # this is analogous to measuring temperature at a shady, dark space.
                         # For reference, at focused distance, the foam gives a range of [26452.0,26815.9] after noise removal, so a value f
                         # from here should be used.
+                        # Noe that these four values correspond to [40.2%, 41.1%] and [40.3%,40.9%]
+                        # just pick 26600 for now, it's around the mid-point
+                        room_temp_ADU = 26600.0
 
-                        return np.ones((height, width)) + array
+                        # the following is based on data from "ice-cup-and-boiling-water-kettle-apr29-calibrated-data.png"
+                        # picked min and max data for freezing and boiling temperature respectively.
+                        # sample_temp = 56.3
+                        # sample_temp_ADU = 29958
+                        # calculation based on simple linear model: pix = 95.24*temp + 24666.67
+                        boil_temp = 100.0
+                        boil_temp_ADU = 34190
+
+                        ice_temp = 1.0
+                        ice_temp_ADU = 24796
+
+                        # for each pixel, scale the ADU value into temperature values using the following formulat:
+                        # temperature = 0.0105*ADU -259
+
+
+                        return  0.0105*array - 259.0*np.ones((height, width)) + 2.3*np.ones((height, width))
 
                     self._temperature = ADUtoTemp(content)
 
