@@ -50,6 +50,13 @@ int timeElapsed = 0;
 int heatingTransTemp = 46;
 int coolingTransTemp = 32;
 
+
+float Temp; //Temperature
+float Vref; //Referent voltage
+float Vout; //Voltage after adc
+float SenVal; //Sensor value
+float SenVal2; //Sensor value from referent pin
+
 void setup() {
   //setup LCD. Upon compilation, the first row is white, and 2nd row is dark
   // use that to check if the camera is working.
@@ -73,6 +80,7 @@ void setup() {
 
 
 }
+
 
 void loop() {
   
@@ -107,7 +115,9 @@ void loop() {
   // filter input and feed it to PID control.
   // input = getTemp();
   raw_input = getTemp();
-  filtered_input = 0.85*old_input + 0.15*getTemp();
+  filtered_input = 0.3*old_input + 0.7*getTemp();
+  // filtered_input = 0.85*old_input + 0.15*getTemp();
+  // filtered_input=raw_input;
   old_input = filtered_input;
   // avg = avgTemp.reading(input);
   // output = myPID.Run(avg);
@@ -144,20 +154,37 @@ delay(100);
 }
 
 float getTemp() {
-  int an_value = analogRead(A0);
-  // apr27, 2023 edit:
-  float mid_value = ((float(an_value) / (1024.0 - 1.0)) * 5.0 - 1.25) / 0.005 +18.00;
-  // float mid_value = ((float(an_value) / (1024.0 - 1.0)) * 5.0 - 1.25) / 0.005;
-  // return ((float(an_value) / (1024.0 - 1.0)) * 5.0 - 1.25) / 0.005 - 6.0; // before nov 1st. maps [0,1023]mV*˚C to [-256, 744]˚C . 31.39 or 32.37 , 32.7 actually
-  // Nov 1. fixing temperature difference: finger:31.8vs 46.0 (14 deg difference). ambient:22 vs 36 (14 degrees difference)) 
-  // note that the amount of offset compensation fluctuates when the temperature increases. i.e. ±5 degrees between 20~50˚C.
-  // return mid_value - 21.0; // maps [0,1023]mV*˚C to [-256, 744]˚C . 31.39 or 32.37 , 32.7 actually
-    // return mid_value - 13.5; from nov 3
-    // return mid_value - 10.5; //for nov 16th thermal imaging
-    // return mid_value - 26.0; //for nov 20th thermal imaging
-    // return mid_value - 7.0; //for nov 29th thermal imaging
-    // return mid_value - 26.0; //for nov 20th thermal imaging
-    return mid_value - 16.0; //for nov 20th thermal imaging
+  // int an_value = analogRead(A0);
+
+  SenVal = analogRead(A0); //Analog value from temperature
+
+  SenVal2 =analogRead(A1); //Analog value from refferent pin
+  
+  // // sept1, 2023 edit:
+  // float mid_value = ((float(an_value) / (1024.0 - 1.0)) * 5.0 - 1.25) / 0.005 +2.00;
+  // // // apr27, 2023 edit:
+  // // float mid_value = ((float(an_value) / (1024.0 - 1.0)) * 5.0 - 1.25) / 0.005 +18.00;
+  // // float mid_value = ((float(an_value) / (1024.0 - 1.0)) * 5.0 - 1.25) / 0.005;
+  // // return ((float(an_value) / (1024.0 - 1.0)) * 5.0 - 1.25) / 0.005 - 6.0; // before nov 1st. maps [0,1023]mV*˚C to [-256, 744]˚C . 31.39 or 32.37 , 32.7 actually
+  // // Nov 1. fixing temperature difference: finger:31.8vs 46.0 (14 deg difference). ambient:22 vs 36 (14 degrees difference)) 
+  // // note that the amount of offset compensation fluctuates when the temperature increases. i.e. ±5 degrees between 20~50˚C.
+  // // return mid_value - 21.0; // maps [0,1023]mV*˚C to [-256, 744]˚C . 31.39 or 32.37 , 32.7 actually
+  //   // return mid_value - 13.5; from nov 3
+  //   // return mid_value - 10.5; //for nov 16th thermal imaging
+  //   // return mid_value - 26.0; //for nov 20th thermal imaging
+  //   // return mid_value - 7.0; //for nov 29th thermal imaging
+  //   // return mid_value - 26.0; //for nov 20th thermal imaging
+  //   // return mid_value - 16.0; //for nov 20th thermal imaging
+  //   return mid_value; //for sept 1st, 2023 testing
+
+
+    // SenVal2 =analogRead(A1); //Analog value from refferent pin
+  Vref = (SenVal2 *5.0) / 1024.0; //Conversion analog to digital for referent value
+  Vout = (SenVal * 5.0) / 1024.0; //Conversion analog to digital for the temperature read voltage
+  Temp = (Vout - Vref) / 0.005; //Temperature calculation
+
+  return Temp;
+
 }
 
 

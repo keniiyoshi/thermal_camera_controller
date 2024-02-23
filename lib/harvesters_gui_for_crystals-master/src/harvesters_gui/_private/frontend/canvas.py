@@ -429,6 +429,7 @@ class Canvas2D(CanvasBase):
 
                     def ADUtoTemp(array):
                         room_temp = 23.0 # default temperature
+                        # got push test feb 23 , 2024
                         # determine what pixel value corresponds to default temperature.
                         # between the room temperature min max of [26395.9,26908.99] after noise removal, at focused distance for peltier cell.
                         # so there is a range depending on the reflectiveness of the material!
